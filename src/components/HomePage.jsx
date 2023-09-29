@@ -146,7 +146,8 @@ function HomePage() {
                       <Col
                         sm={12}
                         md={6}
-                        xl={8}
+                        lg={8}
+                        xxl={9}
                         className="fw-bold mb-3 my-auto"
                       >
                         {username}
@@ -155,18 +156,17 @@ function HomePage() {
                       <Col
                         sm={12}
                         md={6}
-                        xl={4}
+                        lg={4}
+                        xxl={3}
                         className='m-auto'
                       >
                         <Link
                           to={`/albums?userId=${id}`}
-                          className="ml-2"
                           state={{ username }}
                         >
                           <Button
                             variant="primary"
                           >
-                            
                             Albums
                           </Button>
                         </Link>
@@ -175,7 +175,6 @@ function HomePage() {
 
                         <Link
                           to={`/posts?userId=${id}`}
-                          className="ml-2"
                           state={{ username }}
                         >
                           <Button
@@ -185,11 +184,15 @@ function HomePage() {
                           </Button>
                         </Link>
 
+                        {' '}
+
                         <Link
                           to={`/users?id=${id}`}
-                          className="mx-2"
+                          state={{ username }}
                         >
-                          <Button variant="primary">
+                          <Button
+                            variant="primary"
+                          >
                             User Details
                           </Button>
                         </Link>

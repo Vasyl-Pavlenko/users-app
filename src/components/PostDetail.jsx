@@ -1,10 +1,10 @@
-import { Container, Card, Button, Spinner, Alert, Row, Col } from 'react-bootstrap';
+import { Container, Card, Spinner, Alert } from 'react-bootstrap';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function PostDetail() {
-  const { userId, id  } = useParams();
+  const { id  } = useParams();
 
   const { isLoading, isError, data } = useQuery({
     queryKey: ['post', id],
@@ -23,7 +23,10 @@ function PostDetail() {
 
   if (isLoading) {
     return (
-      <Spinner animation="border" variant="primary" />
+      <Spinner
+        animation="border"
+        variant="primary"
+      />
     );
   }
 
@@ -43,42 +46,13 @@ function PostDetail() {
 
       <Card>
         <Card.Body>
-          <Row>
-            <Col
-              sm={12}
-              md={10}
-              xl={11}
-              className="mb-3"
-            >
-              <Card.Title className="text-capitalize">
-                {title}
-              </Card.Title>
+          <Card.Title className="text-capitalize">
+            {title}
+          </Card.Title>
 
-              <Card.Text className="text-capitalize w-75">
-                {body}
-              </Card.Text>
-            </Col>
-
-            <Col
-              sm={12}
-              md={2}
-              xl={1}
-              className='m-auto'
-            >
-              <Link
-                to={`/posts?userId=${userId}`}
-                className="
-                  text-decoration-none
-                  text-white
-                  fw-bold
-                "
-              >
-                <Button variant="primary">
-                  Back
-                </Button>
-              </Link>
-            </Col>
-          </Row> 
+          <Card.Text className="text-capitalize w-75">
+            {body}
+          </Card.Text>
         </Card.Body>
       </Card>
     </Container>

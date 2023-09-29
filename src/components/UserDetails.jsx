@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Container, Card, Button, Alert, Spinner } from 'react-bootstrap';
+import { Container, Card, Alert, Spinner } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
 function UserDetail() {
@@ -31,19 +31,6 @@ function UserDetail() {
         <Alert variant='danger'>
           No data available.
         </Alert>
-
-        <Button variant="primary">
-          <Link
-            to="/"
-            className="
-              text-decoration-none
-              text-white
-              fw-bold
-            "
-          >
-            Back
-          </Link>
-        </Button>
       </Container>
     );
   }
@@ -159,19 +146,6 @@ function UserDetail() {
                 .join(" ")}
               <br />
             </Card.Text>
-
-            <Button variant="primary">
-              <Link
-                to="/"
-                className="
-                text-decoration-none
-                text-white
-                fw-bold
-              "
-              >
-                Back
-              </Link>
-            </Button>
           </Card.Body>
         </Card>
       )}

@@ -35,7 +35,10 @@ function App() {
             element={<UniversalList />}
           />
 
-          <Route path="/users" element={<UserDetail />} />
+          <Route
+            path="/users"
+            element={<UserDetail />}
+          />
 
           <Route
             path="/posts/:userId/:id"

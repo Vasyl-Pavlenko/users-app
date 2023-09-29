@@ -10,6 +10,7 @@ import {
 } from 'react-share';
 
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function ShareButton({ tag }) {
   const handleCopyUrlClick = async () => {
@@ -25,7 +26,10 @@ function ShareButton({ tag }) {
     <Container className="mb-5">
       <Row>
         <Col
-          md={10}
+          sm={12}
+          md={8}
+          lg={9}
+          xl={10}
           className="mb-2"
         >
           <EmailShareButton url={window.location.href}>
@@ -61,13 +65,32 @@ function ShareButton({ tag }) {
           </TwitterShareButton>
         </Col>
 
-        <Col md={2}>
+        <Col
+          sm={12}
+          md={4}
+          lg={3}
+          xl={2}
+        >
           <Button
             variant="primary"
             onClick={handleCopyUrlClick}
+            className='mx-auto'
           >
             Copy Url
           </Button>
+
+          {' '}
+
+          <Link
+            to="#"
+            onClick={() => window.history.back()}
+          >
+            <Button
+            variant="primary"
+            >
+              Back
+            </Button>
+          </Link>
         </Col>
       </Row>
     </Container>

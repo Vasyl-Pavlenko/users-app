@@ -87,17 +87,17 @@ function UniversalList() {
                 <Row>
                   <Col
                     sm={12}
-                    md={8}
-                    xl={10}
-                    className="fw-bold mb-3"
+                    md={9}
+                    lg={11}
+                    className="fw-bold mb-3 ms-auto"
                   >
                   {title}
                   </Col>
 
                   <Col
                     sm={12}
-                    md={4}
-                    xl={2}
+                    md={3}
+                    lg={1}
                     className='m-auto'
                   >
                     {isPosts && (
@@ -110,21 +110,6 @@ function UniversalList() {
                         </Button>
                       </Link>
                     )}
-
-                    <Link
-                      to="/"
-                      className="
-                        text-decoration-none
-                        text-white
-                        fw-bold
-                      "
-                    >
-                      <Button
-                        variant="primary"
-                      >
-                        Back
-                      </Button>
-                    </Link>
                   </Col>
                 </Row>
               </ListGroup.Item>
