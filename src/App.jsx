@@ -4,14 +4,18 @@ import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
 import ShareButton from './components/ShareButton';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UniversalList from './components/UniversalList';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import PostDetail from './components/PostDetail';
+import UserDetail from './components/UserDetails';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      
       <Header />
 
       <Container>
@@ -31,6 +35,13 @@ function App() {
             element={<UniversalList />}
           />
 
+          <Route path="/users" element={<UserDetail />} />
+
+          <Route
+            path="/posts/:userId/:id"
+            element={<PostDetail />}
+          />
+
           <Route
             path="/albums"
             element={<UniversalList />}
@@ -44,6 +55,7 @@ function App() {
 
         <ShareButton />
       </Container>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

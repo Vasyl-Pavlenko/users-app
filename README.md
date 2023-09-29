@@ -31,7 +31,15 @@ The project is built using React and other libraries. It allows you to view info
 - **Search**: Users can search for username
 - **Sorting**: Users can sort by ASC or DESC.
 - **Posts and Albums**: USers can see posts or albums by clicking the button.
-
+- **Posts Details**: Users can see details of every post by clicking on it.
+- **User Details**: 
+  - Users can click on the "Details" button to view detailed user information.
+  - Users can call the telephone number by clicking on it.
+  - Users can send email by clicking on it.
+  - Users can open the user's website by clicking on it.
+  - Users can open a map with the user's address by clicking on it.
+  - Users can perform a Google search with the user's company name by clicking on it.
+- **Back Button**: Users can easily navigate back to the previous page.
 
 ## Getting Started
 To run the Users App locally on your machine, follow these steps:

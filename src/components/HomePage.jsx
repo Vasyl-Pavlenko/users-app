@@ -10,7 +10,7 @@ import {
   Row,
   Spinner
 } from 'react-bootstrap';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useSearchParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -48,8 +48,11 @@ function HomePage() {
       } catch (error) {
         throw new Error(`Error fetching data: ${error.message}`);
       }
+    },
+    options: {
+      keepPreviousData: true,
     }
-  });  
+  });
 
   const users = data ? data.data : [];
 
@@ -64,7 +67,7 @@ function HomePage() {
   });
 
   return (
-    <Container>
+    <Container className="mb-3">
       <HelmetProvider>
         <Helmet>
           <title>Home Page.</title>
@@ -97,6 +100,7 @@ function HomePage() {
           >
             <Form.Control
               type="search"
+              name='search'
               placeholder="Search by Username"
               value={search}
               onChange={onChangeSearch}
@@ -130,10 +134,7 @@ function HomePage() {
               No results found.
             </Alert>
         ) : (
-            <ListGroup
-              as="ul"
-              className="mb-4"
-            >
+            <ListGroup as="ul">
               {sortedUsers.map(({ id, username }) => (
                 <ListGroupItem
                   key={id}
@@ -143,27 +144,29 @@ function HomePage() {
                   <Container>
                     <Row>
                       <Col
-                        sm={6}
-                        md={8}
-                        xl={10}
-                        className="fw-bold mb-3"
+                        sm={12}
+                        md={6}
+                        xl={8}
+                        className="fw-bold mb-3 my-auto"
                       >
                         {username}
                       </Col>
 
                       <Col
-                        sm={6}
-                        md={4}
-                        xl={2}
+                        sm={12}
+                        md={6}
+                        xl={4}
+                        className='m-auto'
                       >
                         <Link
                           to={`/albums?userId=${id}`}
+                          className="ml-2"
                           state={{ username }}
                         >
                           <Button
                             variant="primary"
-                            className="ml-2"
                           >
+                            
                             Albums
                           </Button>
                         </Link>
@@ -172,13 +175,22 @@ function HomePage() {
 
                         <Link
                           to={`/posts?userId=${id}`}
+                          className="ml-2"
                           state={{ username }}
                         >
                           <Button
                             variant="primary"
-                            className="ml-2"
                           >
                             Posts
+                          </Button>
+                        </Link>
+
+                        <Link
+                          to={`/users?id=${id}`}
+                          className="mx-2"
+                        >
+                          <Button variant="primary">
+                            User Details
                           </Button>
                         </Link>
                       </Col>

@@ -12,7 +12,6 @@ import {
 import { Button, Col, Container, Row } from 'react-bootstrap';
 
 function ShareButton({ tag }) {
-
   const handleCopyUrlClick = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);

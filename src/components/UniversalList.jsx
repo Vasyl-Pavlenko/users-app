@@ -1,7 +1,7 @@
-import { Alert, Container, ListGroup, Spinner } from 'react-bootstrap';
-import { useQuery } from 'react-query';
+import { Alert, Button, Col, Container, ListGroup, Row, Spinner } from 'react-bootstrap';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function generateMetaTags(title) {
@@ -24,6 +24,7 @@ function generateMetaTags(title) {
 function UniversalList() {
   const { pathname, search, state } = useLocation();
   const title = pathname.slice(1, -1);
+  const isPosts = title === 'post';
 
   const { isLoading, isError, data } = useQuery({
     queryKey: [pathname],
@@ -34,13 +35,16 @@ function UniversalList() {
       } catch (error) {
         throw new Error(`Error fetching data: ${error.message}`);
       }
+    },
+    options: {
+      keepPreviousData: true,
     }
   });
 
   const metaTags = generateMetaTags(title);
 
   return (
-    <Container>
+    <Container className="mb-3">
       <HelmetProvider>
         <Helmet>
           <title>{metaTags.title}</title>
@@ -69,21 +73,60 @@ function UniversalList() {
               variant="primary"
             />
         ) : data && data.length === 0 ? (
-          <div>
+          <Alert variant="warning">
             No results found.
-          </div>
+          </Alert>
         ) : (
-            <ListGroup
-              as="ul"
-              className="mb-3"
-            >
-            {data.map((item) => (
+            <ListGroup as="ul">
+            {data.map(({ title, id, userId}) => (
               <ListGroup.Item
                 as="li"
-                key={item.id}
+                key={id}
                 className="mb-2 text-capitalize"
               >
-                {item.title}
+                <Row>
+                  <Col
+                    sm={12}
+                    md={8}
+                    xl={10}
+                    className="fw-bold mb-3"
+                  >
+                  {title}
+                  </Col>
+
+                  <Col
+                    sm={12}
+                    md={4}
+                    xl={2}
+                    className='m-auto'
+                  >
+                    {isPosts && (
+                      <Link
+                        to={`/posts/${userId}/${id}`} 
+                        className="mx-2"
+                      >
+                        <Button variant="primary">
+                          Details
+                        </Button>
+                      </Link>
+                    )}
+
+                    <Link
+                      to="/"
+                      className="
+                        text-decoration-none
+                        text-white
+                        fw-bold
+                      "
+                    >
+                      <Button
+                        variant="primary"
+                      >
+                        Back
+                      </Button>
+                    </Link>
+                  </Col>
+                </Row>
               </ListGroup.Item>
             ))}
           </ListGroup>
